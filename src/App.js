@@ -15,6 +15,10 @@ class App extends Component {
         duration: 0,
         genre: "",
         synopsis: ""
+      },
+      valState: {
+        title: null,
+        duration: null
       }
     };
     this.openForm = this.openForm.bind(this);
@@ -45,6 +49,12 @@ class App extends Component {
   }
 
   handleTitleChange(e) {
+    let valTitle = e.target.value;
+
+    if(valTitle === '') {
+      this.state.valState.title = "error";
+    }
+
     this.setState({
       formData: {
         ...this.state.formData,
@@ -63,6 +73,11 @@ class App extends Component {
   }
 
   handleDurationChange(e) {
+    let valTitle = e.target.value;
+
+    if(valTitle === '') {
+      this.state.valState.duration = "error";
+    }
     this.setState({
       formData: {
         ...this.state.formData,
@@ -123,7 +138,7 @@ class App extends Component {
           </Modal.Header>
           <Modal.Body>
             <form>
-              <FormGroup controlId="title">
+              <FormGroup controlId="title" validationState={this.state.valState.title}>
                 <ControlLabel>Title</ControlLabel>
                 <FormControl
                   type="text"
@@ -133,7 +148,7 @@ class App extends Component {
                 />
                 <FormControl.Feedback/>
               </FormGroup>
-              <FormGroup controlId="date">
+              <FormGroup controlId="date" validationState="success">
                 <ControlLabel>Release date</ControlLabel>
                 <FormControl
                   type="date"
@@ -142,7 +157,7 @@ class App extends Component {
                 />
                 <FormControl.Feedback/>
               </FormGroup>
-              <FormGroup controlId="duration">
+              <FormGroup controlId="duration" validationState={this.state.valState.title}>
                 <ControlLabel>Duration</ControlLabel>
                 <FormControl
                   type="number"
@@ -153,7 +168,7 @@ class App extends Component {
                 />
                 <FormControl.Feedback/>
               </FormGroup>
-              <FormGroup controlId="genre">
+              <FormGroup controlId="genre" validationState="success">
                 <ControlLabel>Genre</ControlLabel>
                 <FormControl
                   type="text"
@@ -163,7 +178,7 @@ class App extends Component {
                 />
                 <FormControl.Feedback/>
               </FormGroup>
-              <FormGroup controlId="synopsis">
+              <FormGroup controlId="synopsis" validationState="success">
                 <ControlLabel>Synopsis</ControlLabel>
                 <FormControl
                   componentClass="textarea"

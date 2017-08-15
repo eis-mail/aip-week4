@@ -13,7 +13,7 @@ let store = {
 app.use(bodyParser.json());
 
 app.use(function(req, res, next) {
-  var allowedOrigins = ['http://localhost:3000'];
+  var allowedOrigins = ['http://localhost:3001'];
   var origin = req.headers.origin;
   if(allowedOrigins.indexOf(origin) > -1){
        res.setHeader('Access-Control-Allow-Origin', origin);
